@@ -160,7 +160,7 @@ def webserviceUpdate()
 def zoneOn(evt) {
     log.trace("zoneOn: desc=${evt.value}")
 
-    def d = getChildDevices().find { it.deviceNetworkId.contains("switch${evt.value}") }
+    def d = getChildDevices().find { it.deviceNetworkId == "${state.ip}:${state.port}:switch${evt.value}" }
     if (d)
     {
         def sensorValue = "closed"
@@ -174,7 +174,7 @@ def zoneOn(evt) {
 def zoneOff(evt) {
     log.trace("zoneOff: desc=${evt.value}")
 
-    def d = getChildDevices().find { it.deviceNetworkId.contains("switch${evt.value}") }
+    def d = getChildDevices().find { it.deviceNetworkId == "${state.ip}:${state.port}:switch${evt.value}" }
     if (d)
     {
         def sensorValue = "open"
